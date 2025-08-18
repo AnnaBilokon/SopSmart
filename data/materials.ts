@@ -218,7 +218,7 @@ export const dropOffStations = [
     id: 'recycling_center_south',
     name: 'Återvinningscentral Söderort',
     address: 'Månskensvägen 15, Stockholm',
-    types: ['glass', 'bottles', 'textiles', 'batteries', 'electronics', 'hazardous'],
+    types: ['glass', 'bottles', 'textiles', 'batteries', 'electronics', 'hazardous', 'metal'],
     lat: 59.2978,
     lng: 18.0765,
     opening_hours: 'Mon-Fri 7:00-19:00, Sat-Sun 9:00-17:00'
