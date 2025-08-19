@@ -1,12 +1,13 @@
+"use client";
 import { useState } from "react";
 import { Recycle, Leaf } from "lucide-react";
 import WasteSearchBar from "@/components/WasteSearchBar";
 import ResultCard from "@/components/ResultCard";
 import SuggestionChips from "@/components/SuggestionChips";
 import StationList from "@/components/StationList";
-// import { resolveMaterial, getExampleItems } from '@/utils/wasteResolver';
-// import { dropOffStations } from '@/data/materials';
-// import { SearchResult } from '@/types/waste';
+import { resolveMaterial, getExampleItems } from "@/utils/wasteResolver";
+import { dropOffStations } from "@/data/materials";
+import { SearchResult } from "@/types/waste";
 
 const MainPage = () => {
   const [searchResult, setSearchResult] = useState<SearchResult | null>(null);
@@ -60,9 +61,7 @@ const MainPage = () => {
               <div className="p-2 bg-gradient-hero rounded-lg">
                 <Recycle className="h-6 w-6 text-white" />
               </div>
-              <h1 className="text-xl font-bold text-foreground">
-                {language === "sv" ? "Vart ska det?" : "What goes where?"}
-              </h1>
+              <h1 className="text-xl font-bold text-foreground">SopSmart</h1>
             </div>
 
             <button
