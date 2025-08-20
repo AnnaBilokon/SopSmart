@@ -8,6 +8,7 @@ import StationList from "@/components/StationList";
 import { resolveMaterial, getExampleItems } from "@/utils/wasteResolver";
 import { dropOffStations } from "@/data/materials";
 import { SearchResult } from "@/types/waste";
+import Link from "next/link";
 
 const MainPage = () => {
   const [searchResult, setSearchResult] = useState<SearchResult | null>(null);
@@ -58,9 +59,9 @@ const MainPage = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="p-2 bg-gradient-hero rounded-lg">
+              <Link href="/" className="p-2 bg-gradient-hero rounded-lg">
                 <Recycle className="h-6 w-6 text-white" />
-              </div>
+              </Link>
               <h1 className="text-xl font-bold text-foreground">SopSmart</h1>
             </div>
 
@@ -129,7 +130,7 @@ const MainPage = () => {
           {/* Show no results with examples */}
           {showNoResults && (
             <SuggestionChips
-              suggestions={getExampleItems()}
+              suggestions={getExampleItems(language)}
               onSuggestionClick={handleSuggestionClick}
               title={
                 language === "sv"
@@ -143,7 +144,7 @@ const MainPage = () => {
           {/* Show example chips when no search has been made */}
           {!hasSearched && (
             <SuggestionChips
-              suggestions={getExampleItems()}
+              suggestions={getExampleItems(language)}
               onSuggestionClick={handleSuggestionClick}
               title={
                 language === "sv" ? "Vanliga exempel:" : "Popular examples:"
