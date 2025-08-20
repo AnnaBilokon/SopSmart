@@ -12,7 +12,6 @@ export function resolveMaterial(query: string, materialList: Material[] = materi
     };
   }
 
-  // Find exact matches first
   for (const material of materialList) {
     for (const name of material.names) {
       if (name.toLowerCase() === normalizedQuery) {
@@ -24,7 +23,6 @@ export function resolveMaterial(query: string, materialList: Material[] = materi
     }
   }
 
-  // Find partial matches
   const partialMatches: Array<{ material: Material; score: number }> = [];
   
   for (const material of materialList) {
@@ -38,14 +36,14 @@ export function resolveMaterial(query: string, materialList: Material[] = materi
   }
 
   if (partialMatches.length > 0) {
-    // Sort by best match
+
     partialMatches.sort((a, b) => b.score - a.score);
     const bestMatch = partialMatches[0];
     
     const confidence = Math.min(bestMatch.score * 1.2, 1.0);
     
     if (confidence < 0.8) {
-      // Low confidence - show suggestions
+
       return {
         material: { ...bestMatch.material, confidence },
         confidence,
@@ -59,7 +57,6 @@ export function resolveMaterial(query: string, materialList: Material[] = materi
     };
   }
 
-  // No matches found
   return {
     material: materials[0],
     confidence: 0,
@@ -67,6 +64,10 @@ export function resolveMaterial(query: string, materialList: Material[] = materi
   };
 }
 
-export function getExampleItems(): string[] {
-  return ['diapers', 'batteries', 'glass bottle', 'textiles', 'cardboard'];
+export function getExampleItems(lang: "en" | "sv" = "en"): string[] {
+  const examples = {
+    en: ["diapers", "batteries", "glass bottle", "textiles", "cardboard"],
+    sv: ["blöjor", "batterier", "glasflaska", "textilier", "wellpapp"],
+  };
+  return examples[lang];
 }
