@@ -27,7 +27,7 @@ export const mapMaterialsToItems = (
     return {
       id: m.id,
       label,
-      value: m.names[0], 
+      value: label, 
     };
   });
 
@@ -37,3 +37,5 @@ const slugify = (s: string) =>
     .trim()
     .replace(/\s+/g, "-")
     .replace(/[^a-z0-9-]/g, "");
+
+
