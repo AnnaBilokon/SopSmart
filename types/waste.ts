@@ -24,7 +24,7 @@ export interface DropOffStation {
 }
 
 export interface SearchResult {
-  material: Material;
+  material: Material | null;
   confidence: number;
   suggestions?: Material[];
 }
