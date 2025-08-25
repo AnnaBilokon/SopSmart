@@ -4,6 +4,10 @@ import { Recycle, Leaf } from "lucide-react";
 import WasteSearchBar from "@/components/WasteSearchBar";
 import ResultCard from "@/components/ResultCard";
 import SuggestionChips from "@/components/SuggestionChips";
+import {
+  mapMaterialsToItems,
+  mapStringsToItems,
+} from "@/utils/suggestionMappers";
 import StationList from "@/components/StationList";
 import { resolveMaterial, getExampleItems } from "@/utils/wasteResolver";
 import { dropOffStations } from "@/data/materials";
@@ -35,11 +39,17 @@ const MainPage = () => {
     setLanguage((prev) => (prev === "en" ? "sv" : "en"));
   };
 
+  const materialSuggestions = mapMaterialsToItems(
+    searchResult?.suggestions ?? [],
+    language
+  );
+  const exampleSuggestionItems = mapStringsToItems(getExampleItems(language));
+
   const getFilteredStations = () => {
     if (!searchResult?.material?.show_stations) return [];
 
     return dropOffStations.filter((station) =>
-      searchResult.material.station_filters.some((filter) =>
+      searchResult?.material?.station_filters.some((filter) =>
         station.types.includes(filter)
       )
     );
@@ -109,7 +119,7 @@ const MainPage = () => {
       <section className="px-4 pb-12">
         <div className="container mx-auto max-w-4xl space-y-6">
           {/* Show search result */}
-          {searchResult && searchResult.confidence > 0 && (
+          {searchResult?.material && searchResult.confidence > 0 && (
             <ResultCard
               material={searchResult.material}
               language={language}
@@ -120,7 +130,7 @@ const MainPage = () => {
           {/* Show low confidence suggestions */}
           {showLowConfidence && searchResult?.suggestions && (
             <SuggestionChips
-              suggestions={searchResult.suggestions}
+              suggestions={materialSuggestions}
               onSuggestionClick={handleSuggestionClick}
               title={language === "sv" ? "Menade du:" : "Did you mean:"}
               language={language}
@@ -130,7 +140,7 @@ const MainPage = () => {
           {/* Show no results with examples */}
           {showNoResults && (
             <SuggestionChips
-              suggestions={getExampleItems(language)}
+              suggestions={exampleSuggestionItems}
               onSuggestionClick={handleSuggestionClick}
               title={
                 language === "sv"
@@ -144,7 +154,7 @@ const MainPage = () => {
           {/* Show example chips when no search has been made */}
           {!hasSearched && (
             <SuggestionChips
-              suggestions={getExampleItems(language)}
+              suggestions={exampleSuggestionItems}
               onSuggestionClick={handleSuggestionClick}
               title={
                 language === "sv" ? "Vanliga exempel:" : "Popular examples:"
