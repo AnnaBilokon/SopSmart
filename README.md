@@ -14,6 +14,30 @@ Think of it as a **trustworthy, government-service–like tool with modern UX**.
 
 ---
 
+## 🌍Problem
+
+Waste sorting in Sweden is strict but can be confusing for locals and newcomers alike. People often don’t know:
+
+Which bin to use at home (residual, food, paper, plastic, etc.)
+
+When items require drop-off at special recycling stations (batteries, electronics, hazardous waste)
+
+This leads to mistakes that reduce recycling efficiency.
+
+## 💡 Solution
+
+- Sopsmart provides an intuitive, bilingual interface where users can:
+
+- Search for an item (e.g., diapers, batteries, glass bottle)
+
+- Get clear sorting instructions (home bin or drop-off)
+
+- See nearby recycling stations with address and opening hours
+
+- Use a language toggle (English ↔ Svenska)
+
+- Benefit from smart suggestions and confidence scoring (“Did you mean…?”)
+
 ## ✨ Features
 
 - 🔎 **Smart Search**
