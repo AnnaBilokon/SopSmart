@@ -6,7 +6,7 @@ export function resolveMaterial(query: string, materialList: Material[] = materi
   
   if (!normalizedQuery) {
     return {
-      material: materials[0],
+      material: null,
       confidence: 0,
       suggestions: materials.slice(0, 3)
     };
